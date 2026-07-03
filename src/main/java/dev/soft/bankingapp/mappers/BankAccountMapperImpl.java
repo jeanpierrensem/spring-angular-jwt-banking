@@ -53,11 +53,8 @@ public class BankAccountMapperImpl {
         BeanUtils.copyProperties(operation,accountOperationDTO);
         return accountOperationDTO;
     }
-    public Operation fromAccountOperationDTO(AccountOperationDTO accountOperationDTO){
-        Operation operation = new Operation();
-        BeanUtils.copyProperties(accountOperationDTO, operation);
-        return operation;
-    }
+
+
 
 
 }

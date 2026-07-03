@@ -22,8 +22,8 @@ public interface BankAccountService {
     void credit (String accountId, double amount, String description) throws AccountNotFoundException;
     void transfer(String accountIdSource, String accountIdDestination, double amount) throws AccountNotFoundException, AccountBalanceNotSufficientException;
     CustomerDTO getCustomer(Long customerId) throws CustomerNotFoundException;
-
     CustomerDTO updateCustomer(CustomerDTO customerDTO);
-
     void deleteCustomer(Long customerId) throws CustomerNotFoundException;
+    List<AccountOperationDTO> getAccountHistory(String accountId) throws AccountNotFoundException;
+    AccountHistoryDTO getAccountHistory(String accountId, int page, int size) throws BankAccountNoFoundException;
 }

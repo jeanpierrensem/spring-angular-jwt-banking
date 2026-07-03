@@ -1,7 +1,7 @@
 package dev.soft.bankingapp.repositories;
 
 import dev.soft.bankingapp.entities.*;
-import org.hibernate.query.*;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.*;
 
@@ -11,5 +11,5 @@ import java.util.*;
 @Repository
 public interface AccountOperationRepository extends JpaRepository<Operation, Long> {
     List<Operation> findByBankAccountId(String accountId);
-    Page findByBankAccountId(String accountId, Pageable peageable);
+    Page<Operation> findByBankAccountId(String accountId, PageRequest pageRequest);
 }

@@ -23,4 +23,19 @@ public class BankAccountRestAPI {
        return bankAccountService.listBankAccounts();
    }
 
+   @GetMapping("/accounts/{accountId}/operations")
+   public List<AccountOperationDTO> getHistory (@PathVariable String accountId) throws AccountNotFoundException {
+      return  bankAccountService.getAccountHistory(accountId);
+   }
+
+   @GetMapping("/accounts/{accountId}/pageOperations")
+    public AccountHistoryDTO getHistoryPage (
+            @PathVariable String accountId,
+            @RequestParam(name="page", defaultValue = "0") int page,
+            @RequestParam(name="size", defaultValue = "5") int size
+                                                     ) throws AccountNotFoundException, BankAccountNoFoundException {
+        return bankAccountService.getAccountHistory(accountId, page, size);
+
+   }
+
 }

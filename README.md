@@ -64,4 +64,16 @@ un agent AI. chaque compte appartient à un client.
 [http://localhost:9090/swagger-ui/index.html]
 <img src="captures/11.png">
 
+### Simulation - BankAccountRestAPI with DTO
+<img src="captures/12.png">
+
+###  BankAccount Operations with DTO
+<img src="captures/13.png">
+
+<img src="captures/14.png">
+
+<img src="captures/15.png">
+
+<img src="captures/16.png">
+
 
