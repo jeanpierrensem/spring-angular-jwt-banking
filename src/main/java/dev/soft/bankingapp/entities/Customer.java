@@ -1,5 +1,6 @@
 package dev.soft.bankingapp.entities;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class Customer {
     private String name;
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     private List<BankAccount>  bankAccounts;
 
