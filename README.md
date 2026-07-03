@@ -43,3 +43,6 @@ un agent AI. chaque compte appartient à un client.
 - assoiation 1 * et sens * 1
 ### Simulation - Account and Operation details
 <img src="captures/3.png">
+
+### Simulation - BankAccountService
+<img src="captures/3.png">
