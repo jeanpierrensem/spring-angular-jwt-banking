@@ -17,6 +17,8 @@ un agent AI. chaque compte appartient à un client.
 - ModelMapper (MapStruct-JMapper)
 - Angular
 - MySQL
+- MongoDB(NoSQL)
+- Swagger
 
 
 ## 2. Concept
@@ -30,6 +32,7 @@ un agent AI. chaque compte appartient à un client.
 - Rest API
 - Frontend
 - Backend
+- JsonProperty
 - SQL
 
 
@@ -46,3 +49,19 @@ un agent AI. chaque compte appartient à un client.
 
 ### Simulation - BankAccountService
 <img src="captures/3.png">
+
+### Simulation - web layer & Jackson cyclic reference
+<img src="captures/4.png">
+ 
+   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+<img src="captures/5.png">
+
+
+### Simulation - Customer with DTO
+<img src="captures/6.png">
+
+### Swagger documentation(spring boot openapi doc maven dependency)
+[http://localhost:9090/swagger-ui/index.html]
+<img src="captures/11.png">
+
+

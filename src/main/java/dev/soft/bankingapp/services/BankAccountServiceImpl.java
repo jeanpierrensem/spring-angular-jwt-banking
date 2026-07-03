@@ -1,17 +1,17 @@
 package dev.soft.bankingapp.services;
 
+import dev.soft.bankingapp.dtos.*;
 import dev.soft.bankingapp.entities.*;
 import dev.soft.bankingapp.enums.*;
 import dev.soft.bankingapp.exceptions.*;
 import dev.soft.bankingapp.repositories.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
-import org.hibernate.boot.jaxb.hbm.spi.*;
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 @Service
 @Transactional
@@ -22,12 +22,14 @@ public class BankAccountServiceImpl implements BankAccountService {
     private BankAccountRepository bankAccountRepository;
     private CustomerRepository customerRepository;
     private OperationRepository operationRepository;
+    private BankAccountMapperImpl dtoMapper;
 
 
-    @Override
-    public Customer saveCustomer(Customer customer) {
+
+    public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
         log.info("Saving new customer");
-        return customerRepository.save(customer);
+        Customer saveCustomer = customerRepository.save(dtoMapper.fromCustomerDTO(customerDTO));
+        return dtoMapper.fromCustomer(saveCustomer);
     }
 
     @Override
@@ -67,8 +69,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public List<Customer> listCustomers() {
-        return customerRepository.findAll();
+    public List<CustomerDTO> listCustomers() {
+        List<CustomerDTO> customerDTOs = customerRepository.findAll().stream().map(cust -> dtoMapper.fromCustomer(cust)).collect(Collectors.toList());
+        return customerDTOs;
     }
 
     @Override
@@ -135,4 +138,23 @@ public class BankAccountServiceImpl implements BankAccountService {
         bankAccountRepository.save(destinationbankAccount);
 
     }
+
+    @Override
+    public CustomerDTO getCustomer(Long customerId) throws CustomerNotFoundException {
+        return dtoMapper.fromCustomer(customerRepository.findById(customerId).orElseThrow(()->new CustomerNotFoundException("Customr Not Found")));
+    }
+
+    @Override
+    public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
+        log.info("Update existing customer");
+        Customer saveCustomer = customerRepository.save(dtoMapper.fromCustomerDTO(customerDTO));
+        return dtoMapper.fromCustomer(saveCustomer);
+
+    }
+    @Override
+    public void deleteCustomer(Long customerId) throws CustomerNotFoundException {
+        customerRepository.deleteById(customerId);
+    }
+
+
 }

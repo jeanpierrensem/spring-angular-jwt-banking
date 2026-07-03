@@ -1,5 +1,6 @@
 package dev.soft.bankingapp;
 
+import dev.soft.bankingapp.dtos.*;
 import dev.soft.bankingapp.entities.*;
 import dev.soft.bankingapp.enums.*;
 import dev.soft.bankingapp.exceptions.*;
@@ -24,10 +25,10 @@ public class BankingappApplication {
 
 			//create customer
 			Stream.of("Bertin", "Jean-Pierre", "Roger").forEach(name -> {
-             bankAccountService.saveCustomer(Customer.builder()
-							 .name(name)
-							 .email(name+"@gmail.com")
-					         .build());
+				CustomerDTO customerDTO = new CustomerDTO();
+				customerDTO.setName(name);
+				customerDTO.setEmail(name+"@gmail.com");
+             bankAccountService.saveCustomer(customerDTO);
 
 			});
 

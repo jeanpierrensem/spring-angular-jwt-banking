@@ -1,6 +1,8 @@
 package dev.soft.bankingapp.web;
 
+import dev.soft.bankingapp.dtos.*;
 import dev.soft.bankingapp.entities.*;
+import dev.soft.bankingapp.exceptions.*;
 import dev.soft.bankingapp.services.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
@@ -15,8 +17,29 @@ public class CustomerRestController {
     BankAccountService bankAccountService;
 
     @GetMapping("/customers")
-    public List<Customer> customers() {
+    public List<CustomerDTO> customers() {
        return  bankAccountService.listCustomers();
+    }
+
+    @GetMapping("/customers/{id}")
+    public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws CustomerNotFoundException {
+        return bankAccountService.getCustomer(customerId);
+    }
+
+    @PostMapping("/customers")
+    public CustomerDTO createCustomer(@RequestBody CustomerDTO customerDTO) {
+    return bankAccountService.saveCustomer(customerDTO);
+    }
+
+    @PutMapping("/customers/{id}")
+    public CustomerDTO updateCustomer( @PathVariable(name = "id") Long customerId,   @RequestBody CustomerDTO customerDTO) {
+        customerDTO.setId( customerId );
+        return bankAccountService.saveCustomer(customerDTO);
+    }
+
+    @DeleteMapping("/customers/{id}")
+    public void deleteCustomer( @PathVariable(name = "id") Long customerId) throws CustomerNotFoundException {
+        bankAccountService.deleteCustomer(customerId);
     }
 
 }
