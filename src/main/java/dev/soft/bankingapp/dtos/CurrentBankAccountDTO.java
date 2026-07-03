@@ -1,6 +1,5 @@
 package dev.soft.bankingapp.dtos;
 
-import dev.soft.bankingapp.entities.*;
 import dev.soft.bankingapp.enums.*;
 import lombok.*;
 

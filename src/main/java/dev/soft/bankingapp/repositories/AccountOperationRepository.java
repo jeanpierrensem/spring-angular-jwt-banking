@@ -9,7 +9,7 @@ import java.awt.print.*;
 import java.util.*;
 
 @Repository
-public interface OperationRepository extends JpaRepository<Operation, Long> {
-    List<Operation> findByBankAccountId(Long accountId);
-    Page findByBankAccountId(Long accountId, Pageable peageable);
+public interface AccountOperationRepository extends JpaRepository<Operation, Long> {
+    List<Operation> findByBankAccountId(String accountId);
+    Page findByBankAccountId(String accountId, Pageable peageable);
 }

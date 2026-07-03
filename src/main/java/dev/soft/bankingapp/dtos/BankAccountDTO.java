@@ -1,4 +1,8 @@
 package dev.soft.bankingapp.dtos;
 
-public abstract class BankAccountDTO {
+import lombok.*;
+
+@Data
+public  class BankAccountDTO {
+    private String type ;
 }

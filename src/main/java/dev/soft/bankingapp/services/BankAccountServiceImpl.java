@@ -23,7 +23,7 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     private BankAccountRepository bankAccountRepository;
     private CustomerRepository customerRepository;
-    private OperationRepository operationRepository;
+    private AccountOperationRepository accountOperationRepository;
     private BankAccountMapperImpl dtoMapper;
 
 
@@ -88,11 +88,13 @@ public class BankAccountServiceImpl implements BankAccountService {
                 SavingBankAccountDTO savingBankAccountDTO = new SavingBankAccountDTO();
                 BeanUtils.copyProperties(((SavingAccount)bankAcc),savingBankAccountDTO);
                 savingBankAccountDTO.setCustomerDTO(dtoMapper.fromCustomer(bankAcc.getCustomer()));
+                savingBankAccountDTO.setType(savingBankAccountDTO.getClass().getSimpleName());
                 bankAccountDTOS.add(savingBankAccountDTO);
             } else if (bankAcc instanceof CurrentAccount){
                 CurrentBankAccountDTO currentBankAccountDTO = new CurrentBankAccountDTO();
                 BeanUtils.copyProperties(((CurrentAccount)bankAcc),currentBankAccountDTO);
                 currentBankAccountDTO.setCustomerDTO(dtoMapper.fromCustomer(bankAcc.getCustomer()));
+                currentBankAccountDTO.setType(currentBankAccountDTO.getClass().getSimpleName());
                 bankAccountDTOS.add(currentBankAccountDTO);
             }
         } );
@@ -118,13 +120,13 @@ public class BankAccountServiceImpl implements BankAccountService {
         if (bankAccount.getBalance() < amount) {
             throw new AccountBalanceNotSufficientException("Account Balance Not Sufficient");
         }
-        Operation  operation = new Operation();
+        Operation operation = new Operation();
         operation.setBankAccount(bankAccount);
         operation.setDate(new Date());
         operation.setDescription(description);
         operation.setAmount(amount);
         operation.setType(OperationType.DEBIT);
-        operationRepository.save(operation);
+        accountOperationRepository.save(operation);
         bankAccount.setBalance(bankAccount.getBalance() - amount);
         bankAccountRepository.save(bankAccount);
     }
@@ -136,13 +138,13 @@ public class BankAccountServiceImpl implements BankAccountService {
                 .findById(accountId)
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
 
-        Operation  operation = new Operation();
+        Operation operation = new Operation();
         operation.setBankAccount(bankAccount);
         operation.setDate(new Date());
         operation.setDescription(description);
         operation.setAmount(amount);
         operation.setType(OperationType.CREDIT);
-        operationRepository.save(operation);
+        accountOperationRepository.save(operation);
         bankAccount.setBalance(bankAccount.getBalance() + amount);
         bankAccountRepository.save(bankAccount);
     }
@@ -168,6 +170,10 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     public void deleteCustomer(Long customerId) throws CustomerNotFoundException {
         customerRepository.deleteById(customerId);
+    }
+
+    public List<AccountOperationDTO> accountHistorique(String accountId) throws AccountNotFoundException {
+        return null ;
     }
 
 

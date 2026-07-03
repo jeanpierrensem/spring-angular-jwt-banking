@@ -23,7 +23,7 @@ public class BankingappApplication {
 	CommandLineRunner staticCommandLineRunner(BankAccountService bankAccountService) {
 		return args -> {
 			//create customer
-			Stream.of("Bertin", "Jean-Pierre", "Roger").forEach(name -> {
+			Stream.of("Boukina", "Ismael", "Roger").forEach(name -> {
 				CustomerDTO customerDTO = new CustomerDTO();
 				customerDTO.setName(name);
 				customerDTO.setEmail(name + "@gmail.com");

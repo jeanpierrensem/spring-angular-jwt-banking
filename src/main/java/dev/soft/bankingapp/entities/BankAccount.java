@@ -22,7 +22,7 @@ public abstract class BankAccount {
     private AccountStatus status;
     private String currency;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "bankAccount")
