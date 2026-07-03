@@ -12,12 +12,12 @@ public interface BankAccountService {
 
     CustomerDTO saveCustomer(CustomerDTO customerDTO);
 
-    CurrentAccount saveCurrentBankAccount(double initialBalance, double overdraft, Long  customerId) throws CustomerNotFoundException;
-    SavingAccount saveSavingBankAccount(double initialBalance, double interestRate, Long  customerId) throws CustomerNotFoundException;
+    CurrentBankAccountDTO saveCurrentBankAccount(double initialBalance, double overdraft, Long  customerId) throws CustomerNotFoundException;
+    SavingBankAccountDTO saveSavingBankAccount(double initialBalance, double interestRate, Long  customerId) throws CustomerNotFoundException;
 
     List<CustomerDTO> listCustomers();
-    List<BankAccount> listBankAccounts();
-    BankAccount getBankAccount(String accountId) throws AccountNotFoundException;
+    List<BankAccountDTO> listBankAccounts();
+    BankAccountDTO getBankAccount(String accountId) throws AccountNotFoundException;
     void debit (String accountId, double amount, String description) throws AccountNotFoundException, AccountBalanceNotSufficientException;
     void credit (String accountId, double amount, String description) throws AccountNotFoundException;
     void transfer(String accountIdSource, String accountIdDestination, double amount) throws AccountNotFoundException, AccountBalanceNotSufficientException;
