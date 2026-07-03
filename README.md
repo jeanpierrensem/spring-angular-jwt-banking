@@ -44,27 +44,28 @@ un agent AI. chaque compte appartient à un client.
 
 - mapping d'héritage dans les bases de données relationnelles(Single Table->Jointable->TablePerClass)
 - assoiation 1 * et sens * 1
-### Simulation - Account and Operation details
+# Partie I -  Backend
+####  Account and Operation details
 <img src="captures/3.png">
 
-### Simulation - BankAccountService
+####  BankAccountService
 <img src="captures/3.png">
 
-### Simulation - web layer & Jackson cyclic reference
+#### web layer & Jackson cyclic reference
 <img src="captures/4.png">
  
    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 <img src="captures/5.png">
 
 
-### Simulation - Customer with DTO
+####  Customer with DTO
 <img src="captures/6.png">
 
-### Swagger documentation(spring boot openapi doc maven dependency)
+#### Swagger documentation(spring boot openapi doc maven dependency)
 [http://localhost:9090/swagger-ui/index.html]
 <img src="captures/11.png">
 
-### Simulation - BankAccountRestAPI with DTO
+###  BankAccountRestAPI with DTO
 <img src="captures/12.png">
 
 ###  BankAccount Operations with DTO
@@ -75,5 +76,11 @@ un agent AI. chaque compte appartient à un client.
 <img src="captures/15.png">
 
 <img src="captures/16.png">
+
+# Partie II - Client Angular 
+
+# Partie 3 : Sécuriser l'application avec un système d'authentification basé sur Spring Security et Json Web Token
+
+# Partie 4 : Chat BOT AI
 
 
