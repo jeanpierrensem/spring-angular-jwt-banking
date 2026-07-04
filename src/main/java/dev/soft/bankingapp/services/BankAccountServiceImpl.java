@@ -13,7 +13,6 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
-import java.awt.print.*;
 import java.util.*;
 import java.util.stream.*;
 
@@ -174,6 +173,13 @@ public class BankAccountServiceImpl implements BankAccountService {
     public void deleteCustomer(Long customerId) throws CustomerNotFoundException {
         customerRepository.deleteById(customerId);
     }
+    @Override
+    public List<CustomerDTO> findCustomers(String keyword) {
+        List<Customer> customers = customerRepository.findByNameContainingIgnoreCase(keyword);
+        List<CustomerDTO> customerDTOS =  customers.stream().map(customer -> dtoMapper.fromCustomer(customer)).collect(Collectors.toList());
+         return customerDTOS;
+    }
+
 
     @Override
     public List<AccountOperationDTO> getAccountHistory(String accountId) throws AccountNotFoundException {

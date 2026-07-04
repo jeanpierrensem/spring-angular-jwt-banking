@@ -7,7 +7,7 @@ un agent AI. chaque compte appartient à un client.
 - Il existe deux types de comptes : Comptes courants et comptes épargnes.
 
 
-## 1. STack technique
+## 1. STack technique (Spring Boot 4.1.0)
 - Spring Data
 - Spring Data JPA
 - Hibernate 
@@ -78,6 +78,8 @@ un agent AI. chaque compte appartient à un client.
 <img src="captures/16.png">
 
 # Partie II - Client Angular 
+le client Angular représente le frontend et est disponible à partir du dépôt : 
+[https://github.com/jeanpierrensem/digital-banking-web-angular21]
 
 # Partie 3 : Sécuriser l'application avec un système d'authentification basé sur Spring Security et Json Web Token
 
