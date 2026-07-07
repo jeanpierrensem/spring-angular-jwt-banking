@@ -77,11 +77,47 @@ un agent AI. chaque compte appartient à un client.
 
 <img src="captures/16.png">
 
-# Partie II - Client Angular 
+# Partie II - Client Angular (angular 21.2.18)
 le client Angular représente le frontend et est disponible à partir du dépôt : 
 [https://github.com/jeanpierrensem/digital-banking-web-angular21]
 
+- CRUD
+- validator 
+- httpClient
+- FormGroup
+- CORS
+
+![img_2.png](img_2.png)
+
 # Partie 3 : Sécuriser l'application avec un système d'authentification basé sur Spring Security et Json Web Token
+- spring security 7 + SPring Boot 4
+- JWT (Json Web Token)
+- Authentification stateless
+- base 64 Helper intellij plugging
+- Http Client intellij plugging 
+
+### Basic Authentication
+- <img src="captures/18.png" >
+- <img src="captures/19.png" >
+
+### Jwt authentication
+- <img src="captures/20.png" >
+  Jwt Token Signature
+- <img src="captures/21.png" >
+- <img src="captures/22.png" >
+- npm install jwt-decode
+
+#### Authentication
+ <img src="captures/23.png" >
+
+#### admin login 
+<img src="captures/24.png" >
+
+![img.png](img.png)
+
+#### user profile login 
+![img_1.png](img_1.png)
+
 
 # Partie 4 : Chat BOT AI
 

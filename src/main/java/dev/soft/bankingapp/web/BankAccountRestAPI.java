@@ -36,7 +36,25 @@ public class BankAccountRestAPI {
             @RequestParam(name="size", defaultValue = "5") int size
                                                      ) throws AccountNotFoundException, BankAccountNoFoundException {
         return bankAccountService.getAccountHistory(accountId, page, size);
+    }
 
-   }
+    @PostMapping("/accounts/credit")
+    public CreditDTO credit(@RequestBody CreditDTO creditDTO) throws AccountNotFoundException, AccountBalanceNotSufficientException {
+          bankAccountService.credit(creditDTO.getAccountId(), creditDTO.getAmount(), creditDTO.getDescription());
+        return creditDTO;
+    }
+
+    //crédit
+    @PostMapping("/accounts/debit")
+    public DebitDTO debit(@RequestBody DebitDTO debitDTO) throws AccountNotFoundException, AccountBalanceNotSufficientException {
+        bankAccountService.debit(debitDTO.getAccountId(), debitDTO.getAmount(), debitDTO.getDescription());
+        return debitDTO;
+    }
+
+    //Transfer
+    @PostMapping("/accounts/transfer")
+    public void transfer(TransferDTO transferDTO) throws AccountNotFoundException, AccountBalanceNotSufficientException {
+        bankAccountService.transfer(transferDTO.getAccountSource(), transferDTO.getAccountDestination(), transferDTO.getAmount());
+    }
 
 }

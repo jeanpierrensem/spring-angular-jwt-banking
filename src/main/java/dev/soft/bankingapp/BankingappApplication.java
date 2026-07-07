@@ -23,7 +23,7 @@ public class BankingappApplication {
 	CommandLineRunner staticCommandLineRunner(BankAccountService bankAccountService) {
 		return args -> {
 			//create customer
-			Stream.of("Boukina", "Ismael", "Roger", "Ernest", "zidane", "Raoul", "tubor", "zavier").forEach(name -> {
+			Stream.of("Boukina", "Ismael", "Roger").forEach(name -> {
 				CustomerDTO customerDTO = new CustomerDTO();
 				customerDTO.setName(name);
 				customerDTO.setEmail(name + "@gmail.com");
@@ -39,7 +39,7 @@ public class BankingappApplication {
 
 				for (BankAccountDTO bankAccountDTO : bankAccountList) {
 					System.out.println("Item " + bankAccountDTO.getClass().getName());
-					for (int i = 0; i < 10; i++) {
+					for (int i = 0; i < 2; i++) {
 						if (bankAccountDTO instanceof SavingBankAccountDTO) {
 								bankAccountService.credit(((SavingBankAccountDTO) bankAccountDTO).getId(), 10000 + Math.random(), "credit");
 								bankAccountService.debit(((SavingBankAccountDTO) bankAccountDTO).getId(), 1000 + Math.random(), "Debit");
